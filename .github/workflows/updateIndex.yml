@@ -12,7 +12,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v3  # Mantén la última versión
 
       - name: List PDF files in docs and write to index.txt
         run: |
@@ -27,7 +27,7 @@ jobs:
           git config --local user.name "github-actions[bot]"
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git add index.txt
-          git commit -m "Update index.txt with PDF filenames"
+          git commit -m "Update index.txt with PDF filenames" || echo "No changes to commit"
           git push
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

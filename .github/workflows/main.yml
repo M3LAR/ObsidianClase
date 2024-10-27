@@ -1,0 +1,33 @@
+name: Update PDF Index
+
+on:
+  push:
+    paths:
+      - "docs/*.pdf"  # Se ejecuta cuando cambian archivos PDF en `docs/`
+  workflow_dispatch: # Permite ejecutar manualmente el workflow
+
+jobs:
+  update-index:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: List PDF files in docs and write to index.txt
+        run: |
+          # Buscar archivos PDF en docs/ y guardar sus nombres sin la extensión
+          find docs/ -name "*.pdf" | sed 's|docs/||' | sed 's|\.pdf$||' > index.txt
+          
+      - name: Display index.txt
+        run: cat index.txt  # Para verificar el contenido de index.txt en los logs de GitHub Actions
+
+      - name: Commit and push changes
+        run: |
+          git config --local user.name "github-actions[bot]"
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git add index.txt
+          git commit -m "Update index.txt with PDF filenames"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

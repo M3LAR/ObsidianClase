@@ -40,10 +40,12 @@
     <!-- Contenedor Flex con los botones y el iframe -->
     <div class="container">
         <!-- Botones que abren los PDFs -->
-        <button id="Teoria" onclick="mostrarPDF(this.id)">Teoría</button>
-        <button id="ejercicio1" onclick="mostrarPDF(this.id)">Ejercicio 1</button>
-        <button id="ejercicio2" onclick="mostrarPDF(this.id)">Ejercicio 2</button>
-        <!-- Agrega más botones si es necesario -->
+        <div>
+            <button id="Teoria" onclick="mostrarPDF(this.id)">Teoría</button>
+            <button id="ejercicio1" onclick="mostrarPDF(this.id)">Ejercicio1</button>
+            <button id="ejercicio2" onclick="mostrarPDF(this.id)">Ejercicio2</button>
+            <!-- Agrega más botones si es necesario -->
+        </div>
 
         <!-- Iframe donde se cargará el PDF -->
         <iframe id="pdf-viewer" src=""></iframe>
